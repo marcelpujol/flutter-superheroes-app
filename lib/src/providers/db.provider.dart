@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -12,9 +13,11 @@ class DbProvider {
   DbProvider._();
 
   Future<Database> get database async {
-    if (_database != null) return _database;
-    _database = await initDatabase();
-    return _database;
+    if (!kIsWeb) {
+      if (_database != null) return _database;
+      _database = await initDatabase();
+      return _database;
+    }
   }
 
   Future<Database> initDatabase() async {

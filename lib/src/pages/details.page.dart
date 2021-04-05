@@ -43,30 +43,34 @@ class DetailsPageState extends State<DetailsPage> {
 
     return Scaffold(
       appBar: appBarDetails,
-      body: Container(
-        height: MediaQuery.of(context).size.height - appBarDetails.preferredSize.height,
-        child: Column(
-          children: [
-            Row(
-              children: [
-                _getHeroImage(),
-                SizedBox(width: 20),
-                Column(
-                  children: [
-                    _getHeroAppearance()
-                  ]
-                )
-              ]
-            ),
-            _getHeroBiography(),
-            _getHeroPowerStats()
-          ]
+      body: Align(
+        alignment: Alignment.center,
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.5,
+          height: MediaQuery.of(context).size.height - appBarDetails.preferredSize.height,
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _getHeroImage(),
+                  SizedBox(width: 20),
+                  Column(
+                    children: [
+                      _getHeroAppearance()
+                    ]
+                  )
+                ]
+              ),
+              _getHeroBiography(),
+              _getHeroPowerStats()
+            ]
+          ),
         ),
-      ),
+      )
     );
   }
-
-
 
   Widget _getHeroImage() {
     return ClipRRect(

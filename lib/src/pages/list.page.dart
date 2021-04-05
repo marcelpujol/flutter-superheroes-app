@@ -1,8 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:superheroes/src/models/my-hero.dart';
 import 'package:superheroes/src/providers/db.provider.dart';
 import 'package:superheroes/src/providers/heroes.provider.dart';
 import 'package:superheroes/src/widgets/hero-gridview.widget.dart';
+import 'package:superheroes/src/widgets/hero-listview.widget.dart';
 
 class ListPage extends StatefulWidget {
   final String alignment;
@@ -37,6 +39,9 @@ class ListPageState extends State<ListPage> {
           future: _heroes,
           builder: (BuildContext context, AsyncSnapshot<List<MyHero>> heroes) {
             if (heroes.hasData) {
+              if (kIsWeb) {
+                return HeroListViewWidget(heroes: heroes.data);  
+              }
               return HeroGridViewWidget(heroes: heroes.data);
             }
             else return _displayLoading(_screenSize);

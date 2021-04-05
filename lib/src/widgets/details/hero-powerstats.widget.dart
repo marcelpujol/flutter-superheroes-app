@@ -11,6 +11,7 @@ class HeroPowerStatsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width / 1.5,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class HeroPowerStatsWidget extends StatelessWidget {
   Widget _getRow(BuildContext context, String title, int value, Color color) {
     double percentValue = (value / 100);
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width / 1.5,
       child: Column(
         children: [
           SizedBox(height: 15),
@@ -52,7 +53,7 @@ class HeroPowerStatsWidget extends StatelessWidget {
               ),
               new LinearPercentIndicator(
                 alignment: MainAxisAlignment.start,
-                width: MediaQuery.of(context).size.width - 250,
+                width: (MediaQuery.of(context).size.width / 1.5) - 250,
                 animation: true,
                 lineHeight: 20.0,
                 animationDuration: 2000,

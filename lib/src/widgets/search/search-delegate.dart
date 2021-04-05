@@ -76,38 +76,43 @@ class DataSearch extends SearchDelegate {
     }
 
     Widget _getHeroListResults(BuildContext context, List<MyHero> heroResults) {
-      return ListView(
-
-        children: heroResults.map((hero) {
-          return ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Hero(
-                tag: 'hero-tag-${hero.id}',
-                child: FadeInImage(
-                  image: NetworkImage(hero.images.imgSm),
-                  placeholder: AssetImage('assets/img/default-image.png'),
-                  width: 80.0,
-                  fit: BoxFit.cover
+      return Align(
+        alignment: Alignment.center,
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.5,
+          child: ListView(
+            children: heroResults.map((hero) {
+              return ListTile(
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Hero(
+                    tag: 'hero-tag-${hero.id}',
+                    child: FadeInImage(
+                      image: NetworkImage(hero.images.imgSm),
+                      placeholder: AssetImage('assets/img/default-image.png'),
+                      width: 80.0,
+                      fit: BoxFit.cover
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            title: Text(hero.name),
-            subtitle: Text(hero.biography.publisher),
-            onTap: () {
-              close(context, null);
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    FocusScope.of(context).unfocus();
-                    return DetailsPage(hero: hero);
-                  }
-                )
+                title: Text(hero.name),
+                subtitle: Text(hero.biography.publisher),
+                onTap: () {
+                  close(context, null);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        FocusScope.of(context).unfocus();
+                        return DetailsPage(hero: hero);
+                      }
+                    )
+                  );
+                }
               );
-            }
-          );
-        }).toList()
+            }).toList()
+          )
+        )
       );
     }
 }
